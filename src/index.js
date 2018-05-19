@@ -8,8 +8,8 @@ import registerServiceWorker from './registerServiceWorker'
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path='/new' component={Test} />
-      <Route path='/' component={App} />
+      <Route path='/new' component={App} />
+      <Route path='/' component={Test} />
     </Switch>
   </BrowserRouter>
   , document.getElementById('root')
