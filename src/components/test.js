@@ -59,7 +59,15 @@ export default class TestClass extends Component {
     let newElement = {
       value: event.target.name.value,
       num: event.target.count.value,
-      concentration: event.target.concentration.value
+      concentration: event.target.concentration.value,
+      danger: Math.floor((Math.random() * 4) + 1),
+      Ph: event.target.Ph.value,
+      Ep: event.target.Ep.value,
+      F: event.target.F.value,
+      Ц: event.target.Ц.value,
+      X1: event.target.X1.value,
+      X2: event.target.X2.value,
+      X3: event.target.X3.value
     }
     this.setState(prevState => ({
       subs: [ ...prevState.subs, newElement ],
@@ -69,6 +77,13 @@ export default class TestClass extends Component {
     event.target.name.value = ''
     event.target.count.value = ''
     event.target.concentration.value = ''
+    event.target.Ph.value = ''
+    event.target.Ep.value = ''
+    event.target.F.value = ''
+    event.target.Ц.value = ''
+    event.target.X1.value = ''
+    event.target.X2.value = ''
+    event.target.X3.value = ''
     event.preventDefault()
   }
 
@@ -76,7 +91,7 @@ export default class TestClass extends Component {
     return (
       <tr key={objectData.value}>
         <td>{objectData.value}</td>
-        <td>4</td>
+        <td>{objectData.danger}</td>
         <td>{objectData.num}</td>
         <td>{objectData.concentration}</td>
         <td>{objectData.num / 5}</td>
@@ -95,7 +110,7 @@ export default class TestClass extends Component {
       case 1:
         return <AirComp subs={this.state.subs} />
       case 2:
-        return <WaterComp />
+        return <WaterComp subs={this.state.subs} />
       default:
         return <EarthComp subs={this.state.subs} />
     }
@@ -110,16 +125,34 @@ export default class TestClass extends Component {
           <div className='col-3'>
             <form onSubmit={this.handleSubmit}>
               <div className='form-group'>
-                <label htmlFor='name'>Name</label>
-                <input type='text' className='form-control' id='name' name='name' value={this.state.name} onChange={this.handleChange} />
+                <input type='text' className='form-control'placeholder='Name' name='name' value={this.state.name} onChange={this.handleChange} />
               </div>
               <div className='form-group'>
-                <label htmlFor='count'>Count</label>
-                <input type='number' className='form-control' id='count' name='count' />
+                <input type='number' className='form-control'placeholder='Count' name='count' />
               </div>
               <div className='form-group'>
-                <label htmlFor='name'>Concentration</label>
-                <input type='number' className='form-control' id='concentration' name='concentration' />
+                <input type='number' className='form-control' placeholder='concentration' name='concentration' />
+              </div>
+              <div className='form-group'>
+                <input type='number' className='form-control' name='Ph' placeholder='Ph' />
+              </div>
+              <div className='form-group'>
+                <input type='number' className='form-control' name='Ep' placeholder='Ep' />
+              </div>
+              <div className='form-group'>
+                <input type='number' className='form-control' name='F' placeholder='F' />
+              </div>
+              <div className='form-group'>
+                <input type='number' className='form-control' name='Ц' placeholder='Ц' />
+              </div>
+              <div className='form-group'>
+                <input type='number' className='form-control' name='X1' placeholder='X1' />
+              </div>
+              <div className='form-group'>
+                <input type='number' className='form-control' name='X2' placeholder='X2' />
+              </div>
+              <div className='form-group'>
+                <input type='number' className='form-control' name='X3' placeholder='X3' />
               </div>
               <input type='submit' value='Submit' />
               <input type='button' className='inline' onClick={this.handleDelete} value='Delete' />
@@ -156,6 +189,10 @@ export default class TestClass extends Component {
           <div className='col-9 float-right'>
             {this.renderResult()}
           </div>
+        </div>
+        <div className='row'>
+          <div className='col-3' />
+          <div className='col-9'>Збиток: {this.state.sum / 2.1456}</div>
         </div>
       </div>
     )
